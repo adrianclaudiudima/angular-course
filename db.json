@@ -23,7 +23,15 @@
     }
   ],
   "cart": [],
-  "favorite": [],
+  "favorite": [
+    {
+      "id": 2,
+      "name": "Id neque aliquam",
+      "description": "Diam quam nulla porttitor massa id neque aliquam. Sollicitudin aliquam ultrices sagittis orci a scelerisque. Faucibus in ornare quam viverra orci sagittis.",
+      "imageUrl": "https://source.unsplash.com/random/1200x901",
+      "price": 180
+    }
+  ],
   "userInfo": [
     {
       "name": "Adrian",

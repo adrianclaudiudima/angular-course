@@ -15,4 +15,9 @@ export class FavoriteListComponent {
   constructor(private favoriteService: FavoriteService) {
     this.dataSource = favoriteService.productsAtFavorite$;
   }
+
+  removeFromFavorite(product: Product) {
+    this.favoriteService.removeProductFromFavorite(product.id);
+  }
+
 }

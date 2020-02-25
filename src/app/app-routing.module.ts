@@ -5,6 +5,7 @@ import {ShopDashboardComponent} from './components/shop/shop-dashboard/shop-dash
 import {ShopListComponent} from './components/shop/shop-list/shop-list.component';
 import {ProductDetailsComponent} from './components/shop/product-details/product-details.component';
 import {FavoriteDashboardComponent} from './components/favorite/favorite-dashboard/favorite-dashboard.component';
+import {FavoriteListComponent} from './components/favorite/favorite-list/favorite-list.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,10 @@ const routes: Routes = [
     component: HomeComponent,
   }, {
     path: 'favorite',
-    component: FavoriteDashboardComponent
+    component: FavoriteDashboardComponent,
+    children: [
+      {path: '', component: FavoriteListComponent}
+    ]
   },
   {
     path: 'shop',
