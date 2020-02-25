@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+mat-card {
+  @include mat-elevation(2);
+}
+
+mat-card:hover {
+  @include mat-elevation(5);
+}
+
+.example-card {
+  max-width: 700px;
+}
+
+.example-header-image {
+  background-size: cover;
+}

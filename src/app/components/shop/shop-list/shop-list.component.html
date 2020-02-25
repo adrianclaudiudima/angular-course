@@ -1,0 +1,10 @@
+<ng-container *ngIf="listOfProducts$ | async as products">
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column">
+    <app-product-card
+      fxFlex.xs="100%"
+      fxFlex.sm="48%"
+      fxFlex="30%"
+      *ngFor="let prod of products" [product]="prod"></app-product-card>
+  </div>
+</ng-container>
+

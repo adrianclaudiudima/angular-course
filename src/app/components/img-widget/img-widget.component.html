@@ -1,0 +1,17 @@
+<div class="img-widget" [ngClass]="{'square':imageType === 'square' && applyPadding === true, 'portrait':imageType==='portrait' && applyPadding === true}"
+     [ngStyle]="{
+       'border-top-left-radius.px':tlr,
+       'border-top-right-radius.px': trr,
+       'border-bottom-left-radius.px': blr,
+       'border-bottom-right-radius.px': brr
+       }">
+  <div class="img-widget__background"
+       [style.backgroundImage]="'url('+img+')'"
+       [ngStyle]="{
+       'border-top-left-radius.px':tlr,
+       'border-top-right-radius.px': trr,
+       'border-bottom-left-radius.px': blr,
+       'border-bottom-right-radius.px': brr
+       }">
+  </div>
+</div>

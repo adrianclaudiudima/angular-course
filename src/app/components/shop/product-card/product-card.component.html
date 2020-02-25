@@ -1,0 +1,45 @@
+<mat-card style="padding: 0; position: relative">
+  <button
+    (click)="addProductToFavorite()"
+    style="z-index:10;position: absolute;top: 20px;right: 20px;" color="accent" mat-icon-button
+    aria-label="Example icon-button with a heart icon">
+    <mat-icon>favorite_border</mat-icon>
+  </button>
+  <div
+    matRipple [matRippleUnbounded]="false"
+    style="cursor:pointer;position: relative"
+    (mouseover)="showSuggestion = true"
+    (mouseleave)="showSuggestion=false"
+    (click)="navigateToProductDetails()"
+  >
+    <app-img-widget style="height: 100%" [img]="product.imageUrl" tlr="4" trr="4"></app-img-widget>
+
+    <div
+      [@slideIn]="showSuggestion ? 'shown':'hidden'"
+      style="position: absolute;bottom: 0;left: 0;width: 100%;background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);color: white;height: 40px;"
+      fxLayout="row" fxLayoutAlign="center center">
+      <div class="mat-subheading-1" style="margin-bottom: 0;font-weight: 700;">Detalii produs
+      </div>
+    </div>
+  </div>
+  <div style="padding: 10px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="mat-subheading-1" style="margin-bottom: 5px;">{{product.name}}</div>
+      <div class="mat-subheading-1" style="margin-bottom: 5px;">${{product.price}}Lei</div>
+    </div>
+
+    <div class="mat-caption" style="height: 90px;overflow-y: scroll">{{product.description}}</div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 10px;">
+      <button mat-stroked-button color="primary" style="width: 180px;" (click)="addProductToCart()">
+        <span>ADD TO CART</span>
+        <mat-icon style="margin-left: 5px;">add_shopping_cart</mat-icon>
+      </button>
+
+
+    </div>
+  </div>
+
+</mat-card>
+
+
