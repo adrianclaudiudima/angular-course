@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {ShopService} from './services/shop.service';
+import {AuthService} from './services/auth.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,16 @@ import {ShopService} from './services/shop.service';
 })
 export class AppComponent {
   title = 'angular-training';
-  id = 1;
 
-  constructor(private router: Router, private shopService: ShopService) {
+  authState: Observable<boolean>;
+
+  constructor(private router: Router, private authService: AuthService) {
+    this.authState = this.authService.isLoggedIn$;
   }
 
-  navigateToCart() {
-    this.router.navigate(['/cart']);
+  updateAuthState(state: boolean) {
+    this.authService.setAuthState(state);
   }
 
-  navigateToFavorite() {
-    this.router.navigate([`/favorite/${this.id}`], {queryParams: {someId: this.id}});
-    this.id = this.id + 1;
-  }
+
 }

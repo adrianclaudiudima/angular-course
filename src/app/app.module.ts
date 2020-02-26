@@ -16,12 +16,9 @@ import {CartListComponent} from './components/cart/cart-list/cart-list.component
 import {CartService} from './services/cart.service';
 import {FavoriteService} from './services/favorite.service';
 import {ShopService} from './services/shop.service';
-import {ProductDashboardComponent} from './components/administration/product-dashboard/product-dashboard.component';
-import {CreateProductComponent} from './components/administration/create-product/create-product.component';
 import {FavoriteDashboardComponent} from './components/favorite/favorite-dashboard/favorite-dashboard.component';
 import {FavoriteListComponent} from './components/favorite/favorite-list/favorite-list.component';
 import {ShopListComponent} from './components/shop/shop-list/shop-list.component';
-import {AdministrationService} from './services/administration.service';
 import {FavoriteWidgetComponent} from './components/favorite/favorite-widget/favorite-widget.component';
 import {UserInfoService} from './services/user-info.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -32,6 +29,10 @@ import {MatRippleModule} from '@angular/material/core';
 import {ImgWidgetComponent} from './components/img-widget/img-widget.component';
 import {CartWidgetComponent} from './components/cart/cart-widget/cart-widget.component';
 import {MatTableModule} from '@angular/material/table';
+import {SharedModule} from './modules/shared.module';
+import {AuthService} from './services/auth.service';
+import {AdministrationGuard} from './services/administration.guard';
+import {ShopGuard} from './services/shop.guard';
 
 @NgModule({
   declarations: [
@@ -40,19 +41,17 @@ import {MatTableModule} from '@angular/material/table';
     ProductCardComponent,
     CartDashboardComponent,
     CartListComponent,
-    ProductDashboardComponent,
-    CreateProductComponent,
     FavoriteDashboardComponent,
     FavoriteListComponent,
     ShopListComponent,
     FavoriteWidgetComponent,
     HomeComponent,
     ProductDetailsComponent,
-    ImgWidgetComponent,
     CartWidgetComponent
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -69,8 +68,13 @@ import {MatTableModule} from '@angular/material/table';
     CartService,
     FavoriteService,
     ShopService,
-    AdministrationService,
-    UserInfoService
+    UserInfoService,
+    AuthService,
+    ShopGuard,
+    AdministrationGuard
+  ],
+  exports: [
+    ImgWidgetComponent
   ],
   bootstrap: [AppComponent]
 })

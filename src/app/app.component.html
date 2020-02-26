@@ -4,10 +4,15 @@
   </mat-icon>
   <span>Shop Demo</span>
   <span class="example-fill-remaining-space"></span>
+  <button routerLink="shop">SHOP</button>
+  <button [disabled]="!(authState | async)" mat-raised-button routerLink="administration">Administration</button>
+  <button mat-raised-button routerLink="administration">Administration</button>
   <app-favorite-widget routerLink="favorite"></app-favorite-widget>
   <app-cart-widget routerLink="cart"></app-cart-widget>
 </mat-toolbar>
 
 <div style="margin: 0 auto; max-width: 1200px">
   <router-outlet></router-outlet>
+  <button mat-raised-button color="primary" (click)="updateAuthState(true)"> AUTH = TRUE</button>
+  <button mat-raised-button color="warn" (click)="updateAuthState(false)"> AUTH = FALSE</button>
 </div>
