@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
 import {of, ReplaySubject, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {catchError, finalize, switchMap, take} from 'rxjs/operators';
+import {catchError, switchMap, take} from 'rxjs/operators';
 
 @Injectable()
 export class FavoriteService {

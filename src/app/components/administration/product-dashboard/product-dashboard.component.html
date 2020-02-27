@@ -2,5 +2,18 @@
 
 <div style="width: 300px">
   <div>It works</div>
+  <div style="padding: 40px; background: rgba(26,29,40,0.09)">
+    <div class="mat-title">Search for products</div>
+    <form [formGroup]="searchFormGroup">
+      <mat-form-field>
+        <mat-label>Search for products</mat-label>
+        <input matInput formControlName="searchProduct">
+      </mat-form-field>
+
+
+    </form>
+  </div>
+
+
   <app-img-widget style="width: inherit" img="https://source.unsplash.com/random/1200x901"></app-img-widget>
 </div>

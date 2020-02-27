@@ -6,7 +6,7 @@
   <span class="example-fill-remaining-space"></span>
   <button routerLink="shop">SHOP</button>
   <button [disabled]="!(authState | async)" mat-raised-button routerLink="administration">Administration</button>
-  <button mat-raised-button routerLink="administration">Administration</button>
+  <button mat-raised-button routerLink="/administration">Administration</button>
   <app-favorite-widget routerLink="favorite"></app-favorite-widget>
   <app-cart-widget routerLink="cart"></app-cart-widget>
 </mat-toolbar>

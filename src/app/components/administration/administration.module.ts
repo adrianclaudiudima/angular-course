@@ -4,6 +4,9 @@ import {ProductDashboardComponent} from './product-dashboard/product-dashboard.c
 import {AdministrationService} from '../../services/administration.service';
 import {SharedModule} from '../../modules/shared.module';
 import {AdministrationRoutingModule} from './administration-routing.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import {AdministrationRoutingModule} from './administration-routing.module';
   ],
   imports: [
     SharedModule,
-    AdministrationRoutingModule
+    AdministrationRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [],
   providers: [

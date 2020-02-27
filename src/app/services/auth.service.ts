@@ -8,7 +8,7 @@ export class AuthService {
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor() {
-    this.isLoggedInSubject.next(false);
+    this.isLoggedInSubject.next(true);
   }
 
   setAuthState(isLoggedIn: boolean) {
