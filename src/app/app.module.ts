@@ -33,6 +33,9 @@ import {SharedModule} from './modules/shared.module';
 import {AuthService} from './services/auth.service';
 import {AdministrationGuard} from './services/administration.guard';
 import {ShopGuard} from './services/shop.guard';
+import {StoreModule} from '@ngrx/store';
+import {appReducerToken, getAppReducers} from './store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,11 @@ import {ShopGuard} from './services/shop.guard';
     MatBadgeModule,
     MatCardModule,
     MatRippleModule,
-    MatTableModule
+    MatTableModule,
+    StoreModule.forRoot(appReducerToken),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
   ],
   providers: [
     CartService,
@@ -71,7 +78,11 @@ import {ShopGuard} from './services/shop.guard';
     UserInfoService,
     AuthService,
     ShopGuard,
-    AdministrationGuard
+    AdministrationGuard,
+    {
+      provide: appReducerToken,
+      useFactory: getAppReducers
+    }
   ],
   exports: [
     ImgWidgetComponent

@@ -1,3 +1,13 @@
+<div>REDUX ACTIONS</div>
+
+
+<ng-container *ngIf="productsState$ | async as productsState">
+  <div>Status : {{productsState.status }}</div>
+</ng-container>
+<button mat-raised-button color="primary" (click)="loadProducts()"> LOAD PRODUCTS</button>
+<button mat-raised-button color="primary" (click)="loadProductsSuccess()"> LOAD PRODUCTS SUCCESS</button>
+<button mat-raised-button color="primary" (click)="loadProductsFailed()"> LOAD PRODUCTS FAILED</button>
+
 <ng-container *ngIf="listOfProducts$ | async as products">
   <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column">
     <app-product-card
