@@ -1,1 +1,6 @@
 <div class="mat-display-1">Product Details</div>
+
+<div *ngIf="product$ | async as product ">
+  <div class="mat-title">{{product.name}}</div>
+  <div class="mat-title">{{product.id}}</div>
+</div>

@@ -1,20 +1,36 @@
 <div>REDUX ACTIONS</div>
 
 
-<ng-container *ngIf="productsState$ | async as productsState">
-  <div>Status : {{productsState.status }}</div>
+<ng-container *ngIf="productsStatus$ | async as productStatus">
+  <div *ngIf="productStatus === 'PENDING'">
+    <div class="mat-title">LOADING PRODUCTS ...</div>
+  </div>
+  <div *ngIf="productStatus === 'COMPLETE'">
+    <ng-container *ngIf="listOfProducts$ | async as products">
+
+      <div *ngIf="products.length > 0 else empty" fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column">
+        <app-product-card
+          fxFlex.xs="100%"
+          fxFlex.sm="48%"
+          fxFlex="30%"
+          *ngFor="let prod of products" [product]="prod"></app-product-card>
+      </div>
+      <ng-template #empty>
+        <div class="mat-display-1">No products ...</div>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <div *ngIf="productStatus === 'ERROR'">
+    <ng-container *ngIf="errorMessage$ | async as errorMessage">
+      <div class="mat-display-1" style="color: red">Something went wrong : {{errorMessage}}</div>
+    </ng-container>
+  </div>
 </ng-container>
+
 <button mat-raised-button color="primary" (click)="loadProducts()"> LOAD PRODUCTS</button>
 <button mat-raised-button color="primary" (click)="loadProductsSuccess()"> LOAD PRODUCTS SUCCESS</button>
 <button mat-raised-button color="primary" (click)="loadProductsFailed()"> LOAD PRODUCTS FAILED</button>
 
-<ng-container *ngIf="listOfProducts$ | async as products">
-  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column">
-    <app-product-card
-      fxFlex.xs="100%"
-      fxFlex.sm="48%"
-      fxFlex="30%"
-      *ngFor="let prod of products" [product]="prod"></app-product-card>
-  </div>
-</ng-container>
+
 

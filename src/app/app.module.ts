@@ -36,6 +36,9 @@ import {ShopGuard} from './services/shop.guard';
 import {StoreModule} from '@ngrx/store';
 import {appReducerToken, getAppReducers} from './store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {EffectsModule} from '@ngrx/effects';
+import {ProductsEffects} from './store/products/products.effects';
+import {ProductsService} from './services/products.service';
 
 @NgModule({
   declarations: [
@@ -67,11 +70,15 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     MatRippleModule,
     MatTableModule,
     StoreModule.forRoot(appReducerToken),
+    EffectsModule.forRoot([
+      ProductsEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
   ],
   providers: [
+    ProductsService,
     CartService,
     FavoriteService,
     ShopService,

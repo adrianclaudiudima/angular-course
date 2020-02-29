@@ -8,7 +8,7 @@ import {ProductsState} from './products';
 export interface ApplicationState {
   favorite: FavoriteState;
   cart: CartState;
-  products: ProductsState;
+  productState: ProductsState;
 }
 
 export const appReducerToken = new InjectionToken<ActionReducerMap<ApplicationState>>('Application Reducers');
@@ -17,7 +17,7 @@ export function getAppReducers(): ActionReducerMap<ApplicationState> {
   return {
     cart: cartReducer,
     favorite: favoriteReducer,
-    products: productReducer
+    productState: productReducer
   };
 }
 
