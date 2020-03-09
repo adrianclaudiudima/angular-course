@@ -1,10 +1,23 @@
 <mat-card style="padding: 0; position: relative">
-  <button
-    (click)="addProductToFavorite()"
-    style="z-index:10;position: absolute;top: 20px;right: 20px;" color="accent" mat-icon-button
-    aria-label="Example icon-button with a heart icon">
-    <mat-icon>favorite_border</mat-icon>
-  </button>
+  <ng-container *ngIf="isAtFavorite$ | async else notAtFavorite">
+    <button
+      matTooltip="Remove from favorite"
+      (click)="removeFromFavorite()"
+      style="z-index:10;position: absolute;top: 20px;right: 20px;" color="accent" mat-icon-button
+      aria-label="Example icon-button with a heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #notAtFavorite>
+    <button
+      matTooltip="Add to favorite"
+      (click)="addProductToFavorite()"
+      style="z-index:10;position: absolute;top: 20px;right: 20px;" color="accent" mat-icon-button
+      aria-label="Example icon-button with a heart icon">
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+  </ng-template>
+
   <div
     matRipple [matRippleUnbounded]="false"
     style="cursor:pointer;position: relative"
@@ -36,6 +49,9 @@
         <mat-icon style="margin-left: 5px;">add_shopping_cart</mat-icon>
       </button>
 
+      <button color="accent" mat-icon-button (click)="updateProduct()" matTooltip="Update product mock">
+        <mat-icon style="margin-left: 5px;">edit</mat-icon>
+      </button>
 
     </div>
   </div>

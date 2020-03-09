@@ -1,12 +1,12 @@
 import {InjectionToken} from '@angular/core';
 import {ActionReducerMap} from '@ngrx/store';
-import {favoriteReducer, FavoriteState} from './favorite/favorite.reducer';
+import {favoriteReducer, FavoriteState, FavoriteStateEntity} from './favorite/favorite.reducer';
 import {cartReducer, CartState} from './cart/cart.reducer';
 import {productReducer} from './products/products.reducer';
 import {ProductsState} from './products';
 
 export interface ApplicationState {
-  favorite: FavoriteState;
+  favorite: FavoriteStateEntity;
   cart: CartState;
   productState: ProductsState;
 }

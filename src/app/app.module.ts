@@ -39,6 +39,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {ProductsEffects} from './store/products/products.effects';
 import {ProductsService} from './services/products.service';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {ProductsService} from './services/products.service';
     MatCardModule,
     MatRippleModule,
     MatTableModule,
+    MatTooltipModule,
     StoreModule.forRoot(appReducerToken),
     EffectsModule.forRoot([
       ProductsEffects
@@ -76,6 +78,7 @@ import {ProductsService} from './services/products.service';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
+
   ],
   providers: [
     ProductsService,

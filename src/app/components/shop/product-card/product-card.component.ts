@@ -1,11 +1,14 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../../../model/product';
 import {showConfigure} from './product-card.animation';
 import {Router} from '@angular/router';
-import {interval} from 'rxjs';
-import {filter, take} from 'rxjs/operators';
+import {interval, Observable} from 'rxjs';
+import {take, tap} from 'rxjs/operators';
 import {CartService} from '../../../services/cart.service';
-import {FavoriteService} from '../../../services/favorite.service';
+import {select, Store} from '@ngrx/store';
+import {ApplicationState} from '../../../store';
+import {AddToFavoriteAction, RemoveFromFavoriteAction, UpdateFavoriteAction} from '../../../store/favorite/favorite.actions';
+import {isProductAtFavorite} from '../../../store/favorite/favorite.reducer';
 
 @Component({
   selector: 'app-product-card',
@@ -13,16 +16,22 @@ import {FavoriteService} from '../../../services/favorite.service';
   styleUrls: ['product-card.component.scss'],
   animations: [showConfigure]
 })
-export class ProductCardComponent implements OnChanges {
+export class ProductCardComponent implements OnInit {
   showSuggestion = false;
-  isAtFavorite: boolean;
+  isAtFavorite$: Observable<boolean>;
   @Input()
   product: Product;
 
-  constructor(private router: Router, private cartService: CartService, private favoriteService: FavoriteService) {
+  constructor(
+    private router: Router, private cartService: CartService,
+    private store: Store<ApplicationState>) {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
+    this.isAtFavorite$ = this.store.pipe(
+      select(isProductAtFavorite, this.product.id),
+      tap(v => console.log('HIT'))
+    );
   }
 
 
@@ -37,6 +46,21 @@ export class ProductCardComponent implements OnChanges {
   }
 
   addProductToFavorite() {
-    this.favoriteService.addProductToFavorite(this.product);
+    this.store.dispatch(new AddToFavoriteAction(this.product));
   }
+
+  removeFromFavorite() {
+    this.store.dispatch(new RemoveFromFavoriteAction(this.product.id));
+  }
+
+  updateProduct() {
+    this.store.dispatch(new UpdateFavoriteAction({
+      id: this.product.id,
+      changes: {
+        name: `Modified from update ${this.product.id}`,
+        description: `Modified from update ${this.product.id}`
+      }
+    }));
+  }
+
 }
