@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {catchError, concatMap, debounceTime, exhaustMap, mergeMap, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {Subscription, throwError} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -34,7 +34,6 @@ export class ProductDashboardComponent implements OnInit, OnDestroy {
           });
         }),
       ).subscribe(response => {
-        console.log(response);
       });
   }
 

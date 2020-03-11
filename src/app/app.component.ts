@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './services/auth.service';
 import {fromEvent, Observable} from 'rxjs';
-import {map, take, tap} from 'rxjs/operators';
+import {filter, map, take, tap} from 'rxjs/operators';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +15,30 @@ export class AppComponent implements OnInit {
 
   authState: Observable<boolean>;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private breakpointObserver: BreakpointObserver) {
     this.authState = this.authService.isLoggedIn$;
   }
 
   updateAuthState(state: boolean) {
     this.authService.setAuthState(state);
+
   }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small]).pipe(
+      filter(bp => bp.matches)
+    ).subscribe(
+      v => {
+        console.log('small');
+      }
+    );
+    this.breakpointObserver.observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge]).pipe(
+      filter(bp => bp.matches)
+    ).subscribe(
+      v => {
+        console.log('LARGE');
+      }
+    )
 
 
     /*
@@ -42,28 +58,28 @@ export class AppComponent implements OnInit {
           console.log('COMPLETE !!');
         });
     */
-/*
+    /*
 
-    let i = 0;
-    i = 1;
+        let i = 0;
+        i = 1;
 
-    fromEvent(document, 'click').pipe(
-      tap(v => {
-        console.log('clicked');
-        console.log(v);
-        i++;
-      }),
-      map(v => i),
-      take(4),
-    ).subscribe(value => {
-      console.log(value);
-      console.log('on next');
-    }, error => {
-      console.log('error');
-    }, () => {
-      console.log('complete');
-    })
-*/
+        fromEvent(document, 'click').pipe(
+          tap(v => {
+            console.log('clicked');
+            console.log(v);
+            i++;
+          }),
+          map(v => i),
+          take(4),
+        ).subscribe(value => {
+          console.log(value);
+          console.log('on next');
+        }, error => {
+          console.log('error');
+        }, () => {
+          console.log('complete');
+        })
+    */
 
 
     /*    interval(1000)
@@ -88,7 +104,8 @@ export class AppComponent implements OnInit {
           () => {
             console.log('on complete ! ');
           }
-        )*/;
+        )*/
+    ;
 
   }
 

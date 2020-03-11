@@ -3,7 +3,7 @@ import {Product} from '../../../model/product';
 import {showConfigure} from './product-card.animation';
 import {Router} from '@angular/router';
 import {interval, Observable} from 'rxjs';
-import {take, tap} from 'rxjs/operators';
+import {take} from 'rxjs/operators';
 import {CartService} from '../../../services/cart.service';
 import {select, Store} from '@ngrx/store';
 import {ApplicationState} from '../../../store';
@@ -29,8 +29,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAtFavorite$ = this.store.pipe(
-      select(isProductAtFavorite, this.product.id),
-      tap(v => console.log('HIT'))
+      select(isProductAtFavorite, this.product.id)
     );
   }
 

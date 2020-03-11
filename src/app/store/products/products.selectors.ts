@@ -5,7 +5,6 @@ import {Product} from '../../model/product';
 export const appState = (state: ApplicationState) => state;
 export const getProductsApplicationState = createSelector(appState, s1 => s1.productState);
 export const getProductsArray = createSelector(getProductsApplicationState, s1 => {
-  console.log(s1);
   return s1.products;
 });
 

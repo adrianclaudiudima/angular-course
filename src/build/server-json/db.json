@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Montes nascetur",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "imageUrl": "https://source.unsplash.com/random/1200x900",
+      "price": 330
+    },
+    {
+      "id": 2,
+      "name": "Id neque aliquam",
+      "description": "Diam quam nulla porttitor massa id neque aliquam. Sollicitudin aliquam ultrices sagittis orci a scelerisque. Faucibus in ornare quam viverra orci sagittis.",
+      "imageUrl": "https://source.unsplash.com/random/1200x901",
+      "price": 180
+    },
+    {
+      "id": 3,
+      "name": "Diam quam nulla ",
+      "description": "Quis commodo odio aenean sed adipiscing diam donec adipiscing. Ut aliquam purus sit amet luctus venenatis lectus. ",
+      "imageUrl": "https://source.unsplash.com/random/1200x902",
+      "price": 220
+    }
+  ],
+  "cart": [],
+  "favorite": [
+    {
+      "id": 2,
+      "name": "Id neque aliquam",
+      "description": "Diam quam nulla porttitor massa id neque aliquam. Sollicitudin aliquam ultrices sagittis orci a scelerisque. Faucibus in ornare quam viverra orci sagittis.",
+      "imageUrl": "https://source.unsplash.com/random/1200x901",
+      "price": 180
+    },
+    {
+      "id": 1,
+      "name": "Montes nascetur",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "imageUrl": "https://source.unsplash.com/random/1200x900",
+      "price": 330
+    }
+  ],
+  "userInfo": [
+    {
+      "name": "Adrian",
+      "email": "test@test.com",
+      "password": "password"
+    }
+  ]
+}

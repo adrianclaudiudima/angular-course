@@ -1,0 +1,16 @@
+version: '3'
+services:
+  real-ui:
+    build: real/.
+    image: real-ui
+    container_name: real-ui
+    depends_on:
+      - db-json
+    ports:
+      - "80:80"
+  db-json:
+    image: clue/json-server
+    container_name: db-json
+    volumes:
+      - /Users/thx/Work/projects/angular-course/src/build/server-json/db.json:/data/db.json
+

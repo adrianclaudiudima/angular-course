@@ -40,6 +40,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {ProductsEffects} from './store/products/products.effects';
 import {ProductsService} from './services/products.service';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -92,8 +93,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     {
       provide: appReducerToken,
       useFactory: getAppReducers
-    }
-  ],
+    }],
   exports: [
     ImgWidgetComponent
   ],
