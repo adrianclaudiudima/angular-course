@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+:host {
+  background: white;
+  border-radius: 6px;
+  @include mat-elevation(2)
+}

@@ -1,0 +1,11 @@
+<div *ngFor="let prod of productFavorite | async as products ">
+  <div *ngIf="products.length !== 0 else empty"></div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <div>{{prod.name}}</div>
+    <div>{{prod.description}}</div>
+  </div>
+  <button mat-raised-button (click)="disposeOverlay()"> DISPOSE</button>
+</div>
+<ng-template #empty>
+  No products at favorite
+</ng-template>

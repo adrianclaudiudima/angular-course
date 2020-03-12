@@ -1,3 +1,6 @@
-<button mat-icon-button matBadgeColor="accent" [matBadge]="favoriteCount | async">
+<button
+  #elementRef
+  mat-icon-button matBadgeColor="accent"
+  [matBadge]="favoriteCount | async" (click)="showDetails(elementRef)">
   <mat-icon>favorite</mat-icon>
 </button>

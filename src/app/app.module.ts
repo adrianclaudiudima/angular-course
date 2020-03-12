@@ -21,7 +21,7 @@ import {FavoriteListComponent} from './components/favorite/favorite-list/favorit
 import {ShopListComponent} from './components/shop/shop-list/shop-list.component';
 import {FavoriteWidgetComponent} from './components/favorite/favorite-widget/favorite-widget.component';
 import {UserInfoService} from './services/user-info.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './components/home/home.component';
 import {ProductDetailsComponent} from './components/shop/product-details/product-details.component';
 import {MatCardModule} from '@angular/material/card';
@@ -40,10 +40,17 @@ import {EffectsModule} from '@ngrx/effects';
 import {ProductsEffects} from './store/products/products.effects';
 import {ProductsService} from './services/products.service';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {APP_BASE_HREF} from '@angular/common';
+import {LoadingOverlayComponent} from './loading/component/loading-overlay.component';
+import {LoadingOverlayService} from './loading/loading-overlay.service';
+import {LoadingInterceptor} from './loading/loading.interceptor';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {FavoriteOverlayService} from './components/favorite/favorite-overlay.service';
+import {FavoriteOverlayComponent} from './components/favorite/favorite-overlay/favorite-overlay.component';
 
 @NgModule({
   declarations: [
+    FavoriteOverlayComponent,
     AppComponent,
     ShopDashboardComponent,
     ProductCardComponent,
@@ -55,7 +62,8 @@ import {APP_BASE_HREF} from '@angular/common';
     FavoriteWidgetComponent,
     HomeComponent,
     ProductDetailsComponent,
-    CartWidgetComponent
+    CartWidgetComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +87,7 @@ import {APP_BASE_HREF} from '@angular/common';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
+    MatProgressSpinnerModule,
 
   ],
   providers: [
@@ -90,6 +99,13 @@ import {APP_BASE_HREF} from '@angular/common';
     AuthService,
     ShopGuard,
     AdministrationGuard,
+    FavoriteOverlayService,
+    LoadingOverlayService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
     {
       provide: appReducerToken,
       useFactory: getAppReducers
@@ -100,4 +116,8 @@ import {APP_BASE_HREF} from '@angular/common';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor(private loadingOverlayService: LoadingOverlayService) {
+  }
+
 }
